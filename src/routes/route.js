@@ -1,9 +1,8 @@
-const express = require('express');
-const router = express.Router();
+
 
 // QUERY PARAMS
 // localhost:3000/get-query-1?myCoolVar=24&xyz=hiFunctionUP
-router.get("/get-query-1", function (req, res) {
+/*router.get("/get-query-1", function (req, res) {
     let data = req.query
     console.log(data)
     res.send({ data: data, status: true })
@@ -41,7 +40,7 @@ router.post("/post-query-2", function (req, res) {
     //     if ( myArr[i] > input )      finalArr.push(myArr[i]) 
     // }
     res.send({ result: finalArr , status: true })
-})
+})*/
 
 
 // ASSIGNMENT:
@@ -50,36 +49,55 @@ router.post("/post-query-2", function (req, res) {
 // also return an array consisting of only the person that can vote
 
 //  take this as sample for array of persons:
-// let persons= [
-//     {
-//     name: "PK",
-//     age: 10,
-//     votingStatus: false
-// },
-// {
-//     name: "SK",
-//     age: 20,
-//     votingStatus: false
-// },
-// {
-//     name: "AA",
-//     age: 70,
-//     votingStatus: false
-// },
-// {
-//     name: "SC",
-//     age: 5,
-//     votingStatus: false
-// },
-// {
-//     name: "HO",
-//     age: 40,
-//     votingStatus: false
-// }
-// ]
+ let persons= [
+     {
+     name: "PK",
+     age: 10,
+     votingStatus: false
+ },
+ {
+     name: "SK",
+     age: 20,
+     votingStatus: false
+ },
+ {
+     name: "AA",
+     age: 70,
+     votingStatus: false
+ },
+ {
+     name: "SC",
+     age: 5,
+     votingStatus: false
+ },
+ {
+     name: "HO",
+     age: 40,
+     votingStatus: false
+ }
+ ]
 
+ const express = require('express');
+const router = express.Router();
 
-
-
+router.post("/post-query-3", function (req, res) {
+    //CODE HERE
+    let votingAge= req.query.votingAge
+    
+    let newarr=[]
+    for(let i=0;i<persons.length ;i++){
+        if(persons[i].age>votingAge){
+            persons[i].votingStatus=true
+            newarr.push(persons[i])
+        }
+    }
+    if(newarr.length>0)
+    {
+        return res.send(newarr)
+    }
+    else{
+        return res.send("no member found above this age")
+    }
+})
 
 module.exports = router;
