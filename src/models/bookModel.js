@@ -6,6 +6,8 @@ const bookSchema = new mongoose.Schema( {
     tags: [String],
     
     isPublished: Boolean,
+    stockAvailable: Boolean,
+    totalPages: string,
     prices: {
         indianPrice: String,
         europePrice: String,
