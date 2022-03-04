@@ -32,8 +32,21 @@ const getBooks= async function (req, res) {
 }
 
 
+const updateDocument = async function(req,res){
+    let update = await bookModel.updateMany({$or:[{publisher: "penguin"},{publisher: "HarperCollins"},
+   {
+    $set : {
+        isHardCover:"true"
+    }
+   }]
+
+
+   })
+}
+
 module.exports.createBook= createBook
 module.exports.getBooks= getBooks
+module.exports.updateDocument=updateDocument
 
 
 

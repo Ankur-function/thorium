@@ -7,6 +7,10 @@ const createAuthor= async function (req, res) {
     res.send({data: authorCreated})
 }
 
+const updateAuthor= async function(req,res) {
+
+}
+
 module.exports.createAuthor= createAuthor
 
 
