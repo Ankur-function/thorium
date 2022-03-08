@@ -1,26 +1,26 @@
+const mid= require("../src/middleware.js")
 const express = require('express');
 const router = express.Router();
 // const UserModel= require("../models/userModel.js")
+
+
 const UserController= require("../controllers/userController")
-const BookController= require("../controllers/bookController")
+const productController= require("../controllers/productController")
 
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
+const userModel= require("../models/userModel")
+const productModel= require("../models/productModel")
+const orderModel= require("../models/orderModel")
 
-router.post("/createUser", UserController.createUser  )
 
-router.get("/getUsersData", UserController.getUsersData)
+router.post("/createUser",mid,usercontroller.createuser)
 
-router.post("/createBook", BookController.createBook  )
+router.post("/createProduct", productController.createProduct )
 
-router.get("/getBooksData", BookController.getBooksData)
+module.exports = router;
 
-router.post("/updateBooks", BookController.updateBooks)
-router.post("/deleteBooks", BookController.deleteBooks)
 
 //MOMENT JS
-const moment = require('moment');
+/*const moment = require('moment');
 router.get("/dateManipulations", function (req, res) {
     
     // const today = moment();
@@ -38,4 +38,4 @@ router.get("/dateManipulations", function (req, res) {
     res.send({ msg: "all good"})
 })
 
-module.exports = router;
+   */
