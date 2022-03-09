@@ -15,4 +15,6 @@ router.get("/users/:userId", userController.getUserData)
 
 router.put("/users/:userId", userController.updateUser)
 
+eouter.delete("/users/:userId",userController.deletedUser)
+
 module.exports = router;

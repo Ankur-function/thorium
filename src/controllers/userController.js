@@ -72,6 +72,14 @@ const updateUser = async function (req, res) {
 // Check if the token present is a valid token
 // Return a different error message in both these cases
 
+let token = req.headers["x-Auth-token"];
+if (!token) return res.send({ status: false, msg: "token must be present" });
+
+let decodedToken = jwt.verify(token, "functionup-thorium");
+  if (!decodedToken)
+    return res.send({ status: false, msg: "token is invalid" });
+
+
   let userId = req.params.userId;
   let user = await userModel.findById(userId);
   //Return an error if no user with the given id exists in the db
@@ -84,7 +92,22 @@ const updateUser = async function (req, res) {
   res.send({ status: updatedUser, data: updatedUser });
 };
 
+let deletedUser=async function(req,res){
+  let userId=req.params.userId
+  let deleted=await ussrModel.updateOne({_id:userId},{$set:{isDeleted:true}})
+  res.send(deleted)
+
+  let token = req.headers["x-Auth-token"];
+if (!token) return res.send({ status: false, msg: "token must be present" });
+
+let decodedToken = jwt.verify(token, "functionup-thorium");
+  if (!decodedToken)
+    return res.send({ status: false, msg: "token is invalid" });
+
+}
+
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
+module.exports.deletedUser = deletedUser
